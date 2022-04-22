@@ -13,6 +13,7 @@ password = "wang652580"
 
 chrome_options = Options()
 chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--headless')
 chrome_options.add_argument("window-size=1295,843")
 chrome_options.add_argument("--no-sandbox")
 
