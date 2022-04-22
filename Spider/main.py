@@ -4,13 +4,19 @@ import ddddocr
 from PIL import Image
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 
 url_aolan = "http://smst.hhu.edu.cn/login.aspx"
 url_pic = "http://smst.hhu.edu.cn/Vcode.ASPX"
 username = "2062310327"
 password = "wang652580"
 
-driver = webdriver.Chrome("/usr/bin/chromedriver")
+chrome_options = Options()
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument("window-size=1295,843")
+chrome_options.add_argument("--no-sandbox")
+
+driver = webdriver.Chrome(chrome_options=chrome_options, executable_path="/usr/bin/chromedriver")
 driver.get(url=url_aolan)
 
 driver.find_element(By.ID, 'userbh').send_keys(username)
