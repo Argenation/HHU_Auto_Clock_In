@@ -25,7 +25,7 @@ password_list = args.password.split(',')
 for i in range(len(username_list)):
     username = username_list[i]
     password = password_list[i]
-    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path='../chrome/chromedriver')
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path='/usr/bin/chromedriver')
     driver.get(url=url_aolan)
     driver.find_element(By.ID, 'userbh').send_keys(username)
     driver.find_element(By.ID, 'pas1s').send_keys(password)
