@@ -10,7 +10,7 @@ url_pic = "http://smst.hhu.edu.cn/Vcode.ASPX"
 username = "2062310327"
 password = "wang652580"
 
-driver = webdriver.Chrome('"/usr/bin/chromedriver"')
+driver = webdriver.Chrome("/usr/bin/chromedriver")
 driver.get(url=url_aolan)
 
 driver.find_element(By.ID, 'userbh').send_keys(username)
