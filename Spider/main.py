@@ -26,7 +26,7 @@ verif_code = driver.find_element(By.ID, 'Image1')
 verif_loc, verif_size = verif_code.location, verif_code.size
 x, y = verif_loc.values()
 h, w = verif_size.values()
-x, y = 1.25*x, 1.26*y
+
 panel_height = driver.execute_script('return window.outerHeight - window.innerHeight')
 panel_width = driver.execute_script('return window.outerWidth - window.innerWidth')
 
