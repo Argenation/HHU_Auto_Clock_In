@@ -94,8 +94,11 @@ for i in range(len(username_list)):
         driver.find_element(By.NAME, 'databc').click()
         driver.quit()
 
-        message = str(datetime.datetime.now()) + " 打卡成功，感谢您的支持！"
+        message = str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + '\n' + username +" 打卡成功，感谢您的支持！"
+        print(message)
         send_email(message=message, to_addrs=email_list[i])
     except:
-        message = str(datetime.datetime.now()) + " 打卡失败，请等待下一次打卡或手动打卡"
+        username = username_list[i]
+        message = str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + '\n' + username +" 打卡失败，请等待下一次打卡或手动打卡"
+        print(message)
         send_email(message=message, to_addrs=email_list[i])
