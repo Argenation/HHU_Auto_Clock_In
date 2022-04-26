@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from smtplib import SMTP_SSL
 from email.mime.text import MIMEText
 import datetime
+from datetime import timedelta
 
 # 奥蓝系统登录网址
 url_aolan = "http://smst.hhu.edu.cn/login.aspx"
@@ -90,15 +91,22 @@ for i in range(len(username_list)):
         driver.find_element(By.XPATH, '//*[@id="my_menu"]/div/a[1]').click()
         iframe = driver.find_element_by_name("r_3_3")
         driver.switch_to.frame(iframe)
+        last_time = driver.find_element(By.NAME, 'tbrq').get_attribute('value').split('-')
+        now_time = (datetime.datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d').split('-')
+        last_time = list(map(int, last_time))
+        now_time = list(map(int, now_time))
 
-        driver.find_element(By.NAME, 'databc').click()
-        driver.quit()
-
-        message = str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + '\n' + username +" 打卡成功，感谢您的支持！"
-        print(message)
-        send_email(message=message, to_addrs=email_list[i])
+        if last_time != now_time:
+            driver.find_element(By.NAME, 'databc').click()
+            driver.quit()
+            message = str((datetime.datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')) + '\n' + username +" 打卡成功，感谢您的支持！"
+            print(message)
+            send_email(message=message, to_addrs=email_list[i])
+        else:
+            driver.quit()
+            print(username, '今日已打卡')
     except:
         username = username_list[i]
-        message = str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + '\n' + username +" 打卡失败，请等待下一次打卡或手动打卡"
+        message = str((datetime.datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')) + '\n' + username +" 打卡失败，请等待下一次打卡或手动打卡"
         print(message)
         send_email(message=message, to_addrs=email_list[i])
