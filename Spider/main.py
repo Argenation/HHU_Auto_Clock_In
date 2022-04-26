@@ -95,7 +95,7 @@ for i in range(len(username_list)):
         now_time = (datetime.datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d').split('-')
         last_time = list(map(int, last_time))
         now_time = list(map(int, now_time))
-
+        print(now_time, last_time)
         if last_time != now_time:
             driver.find_element(By.NAME, 'databc').click()
             driver.quit()
