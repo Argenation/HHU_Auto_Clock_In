@@ -96,7 +96,7 @@ for i in range(len(username_list)):
         last_time = list(map(int, last_time))
         now_time = list(map(int, now_time))
         print(now_time, last_time)
-        if last_time != now_time:
+        if last_time == now_time:
             driver.find_element(By.NAME, 'databc').click()
             driver.quit()
             message = str((datetime.datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')) + '\n' + username +" 打卡成功，感谢您的支持！"
